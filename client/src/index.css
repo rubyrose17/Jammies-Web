@@ -147,3 +147,7 @@ body {
     opacity: 0;
   }
 }
+
+.hover:hover {
+  box-shadow: 0 0 15px gray;
+}

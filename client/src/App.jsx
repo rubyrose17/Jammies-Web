@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
         <Route path="/" element={<Forms />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
