@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Image from "../assets/Mobile login.gif";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Forms = () => {
   const navigate = useNavigate();
@@ -15,9 +17,7 @@ const Forms = () => {
 
   const [isSignIn, setIsSignIn] = useState(false);
   const [message, setMessage] = useState("");
-  const [isRegistrationSuccessful, setIsRegistrationSuccessful] =
-    useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const MySwal = withReactContent(Swal);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,11 +36,6 @@ const Forms = () => {
     setMessage("");
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setIsSignIn(true); // Switch to the sign-in form
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignIn) {
@@ -48,23 +43,52 @@ const Forms = () => {
         .post("http://localhost:3000/api/signin", formData)
         .then((response) => {
           setMessage("Sign-in successful");
-          navigate("/home");
+
+          MySwal.fire({
+            icon: "success",
+            title: "Sign-In Successful",
+            text: "You have successfully signed in.",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/home");
+            }
+          });
         })
         .catch((error) => {
           setMessage("Sign-in failed");
           console.error(error);
+
+          MySwal.fire({
+            icon: "error",
+            title: "Sign-In Failed",
+            text: "There was an error during sign-in.",
+          });
         });
     } else {
       axios
         .post("http://localhost:3000/api/register", formData)
         .then((response) => {
           setMessage("Registration successful");
-          setIsRegistrationSuccessful(true); // Set registration success to true
-          setShowModal(true); // Show the modal
+
+          MySwal.fire({
+            icon: "success",
+            title: "Registration Successful",
+            text: "You have successfully registered.",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/home");
+            }
+          });
         })
         .catch((error) => {
           setMessage("Registration failed");
           console.error(error);
+
+          MySwal.fire({
+            icon: "error",
+            title: "Registration Failed",
+            text: "There was an error during registration.",
+          });
         });
     }
   };
@@ -165,14 +189,6 @@ const Forms = () => {
             )}
           </p>
         </form>
-        {!showModal && (
-          <div className="modal shadow-xl p-4 rounded">
-            <div className="modal-content">
-              <p>{message}</p>
-              <button onClick={closeModal}>Close</button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
