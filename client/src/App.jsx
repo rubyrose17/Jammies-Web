@@ -1,12 +1,18 @@
+// Import necessary components and modules
 import React from "react";
-import SignUpForm from "./components/SignupForm";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Forms from "./components/Forms";
+import Home from "./pages/Home";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <SignUpForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Forms />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

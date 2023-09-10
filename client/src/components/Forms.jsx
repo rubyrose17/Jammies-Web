@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Image from "../assets/Mobile login.gif";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function SignupForm() {
+const Forms = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -11,6 +14,10 @@ function SignupForm() {
   });
 
   const [isSignIn, setIsSignIn] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isRegistrationSuccessful, setIsRegistrationSuccessful] =
+    useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,15 +33,49 @@ function SignupForm() {
       password: "",
       confirmPassword: "",
     });
+    setMessage("");
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setIsSignIn(true); // Switch to the sign-in form
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignIn) {
+      axios
+        .post("http://localhost:3000/api/signin", formData)
+        .then((response) => {
+          setMessage("Sign-in successful");
+          navigate("/home");
+        })
+        .catch((error) => {
+          setMessage("Sign-in failed");
+          console.error(error);
+        });
+    } else {
+      axios
+        .post("http://localhost:3000/api/register", formData)
+        .then((response) => {
+          setMessage("Registration successful");
+          setIsRegistrationSuccessful(true); // Set registration success to true
+          setShowModal(true); // Show the modal
+        })
+        .catch((error) => {
+          setMessage("Registration failed");
+          console.error(error);
+        });
+    }
   };
 
   return (
     <div className="w-full h-screen max-w-[1200px] mx-auto flex items-center justify-center">
-      <div className="grid grid-cols-2 place-items-center">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
+        <div className="hidden md:flex">
           <img src={Image} alt="Image" />
         </div>
-        <form className="form">
+        <form className="form " onSubmit={handleSubmit}>
           <p className="title">{isSignIn ? "Sign In" : "Register"}</p>
           <p className="message">
             {isSignIn
@@ -124,9 +165,17 @@ function SignupForm() {
             )}
           </p>
         </form>
+        {!showModal && (
+          <div className="modal shadow-xl p-4 rounded">
+            <div className="modal-content">
+              <p>{message}</p>
+              <button onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
-export default SignupForm;
+export default Forms;
