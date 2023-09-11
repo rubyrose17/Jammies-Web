@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user"); // Assuming the user schema is in a separate file
+const User = require("../models/user");
 
 // Register a new user
 router.post("/register", async (req, res) => {
@@ -21,8 +21,6 @@ router.post("/signin", async (req, res) => {
     if (!user) {
       res.status(401).json({ error: "Invalid credentials" });
     } else {
-      // User is authenticated, you can generate a JWT token here
-      // and send it as a response for further authentication
       res.status(200).json({ message: "Sign-in successfully" });
     }
   } catch (error) {

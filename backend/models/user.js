@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   email: String,
-  password: String, // You should hash and salt the password
+  password: String,
 });
 
 const User = mongoose.model("User", userSchema);
