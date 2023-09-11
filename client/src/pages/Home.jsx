@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import Background from "../assets/bg.mp4";
 import { navLinks, home } from "../constant/home";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+
 const Home = () => {
   const [nav, setNav] = useState(false);
+
   const handleClickNav = () => {
     setNav(!nav);
   };
 
   return (
     <div className="relative w-full">
-      <header className="absolute flex items-center justify-between px-10 p-5 z-10">
-        <h1 className=" text-3xl font-bold text-white">Jammies</h1>
+      <header className="absolute flex items-center justify-between px-10 p-5 z-20">
+        <h1 className="text-3xl font-bold text-white">Jammies</h1>
         <ul className="hidden md:flex justify-center text-white font-semibold">
           {navLinks.map((link, index) => (
             <li
@@ -22,14 +24,14 @@ const Home = () => {
             </li>
           ))}
         </ul>
-        <div className="hidden md:block w-36 ">
+        <div className="hidden md:block w-36">
           <button className="text-semibold border-2 rounded-full text-white w-full p-2 hover:bg-white hover:text-black cursor-pointer duration-300">
             Book Now
           </button>
         </div>
         <div
           onClick={handleClickNav}
-          className="block md:hidden z-10 cursor-pointer"
+          className="block md:hidden z-50 cursor-pointer"
         >
           {nav ? (
             <AiOutlineClose size={30} className="text-black" />
@@ -40,7 +42,7 @@ const Home = () => {
         <ul
           className={
             nav
-              ? "flex items-center justify-center flex-col fixed left-0 top-0 w-[80%] h-full bg-white text-black ease-in-out duration-500"
+              ? "flex items-center justify-center flex-col fixed left-0 top-0 w-[80%] h-full bg-white text-black ease-in-out duration-500 z-30"
               : " flex items-center justify-center flex-col fixed left-[-100%] top-0 w-[80%] h-full bg-white text-black ease-in-out duration-500"
           }
         >
@@ -81,7 +83,7 @@ const Home = () => {
           <h1 className="font-semibold text-2xl text-gray-700 mb-4">
             Popular Destination
           </h1>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {home.map((item, index) => (
               <div
                 key={index}
