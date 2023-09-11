@@ -1,3 +1,22 @@
+export const navLinks = [
+  {
+    title: "Discover",
+    path: "/discover",
+  },
+  {
+    title: "Booking",
+    path: "/booking",
+  },
+  {
+    title: "Destination",
+    path: "/destination",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+];
+
 export const home = [
   {
     title: "New Your",
