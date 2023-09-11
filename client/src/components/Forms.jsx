@@ -74,10 +74,6 @@ const Forms = () => {
             icon: "success",
             title: "Registration Successful",
             text: "You have successfully registered.",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/home");
-            }
           });
         })
         .catch((error) => {
@@ -177,14 +173,16 @@ const Forms = () => {
             {isSignIn ? (
               <>
                 Don't have an account?{" "}
-                <span className="text-blue-600 font-medium">
+                <span className="text-blue-600 font-medium cursor-pointer">
                   Register here.
                 </span>
               </>
             ) : (
               <>
                 Already have an account?{" "}
-                <span className="text-blue-600 font-medium">Sign in here.</span>
+                <span className="text-blue-600 font-medium cursor-pointer">
+                  Sign in here.
+                </span>
               </>
             )}
           </p>
