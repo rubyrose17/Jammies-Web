@@ -14,7 +14,7 @@ export const Events = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 pt-12">
+        <div className="grid md:grid-cols-3 gap-4 pt-12">
           {events.map((event, i) => (
             <div
               key={i}

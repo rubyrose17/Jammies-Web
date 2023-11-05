@@ -21,7 +21,11 @@ const Main = () => {
       </header>
 
       <div
-        style={{ backgroundImage: `url(${Background})` }}
+        style={{
+          backgroundImage: `url(${Background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
         className="h-screen w-full "
       >
         <div className="w-full h-screen flex flex-col items-center justify-center ">
