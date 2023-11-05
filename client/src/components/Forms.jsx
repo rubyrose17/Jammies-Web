@@ -50,7 +50,7 @@ const Forms = () => {
             text: "You have successfully signed in.",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate("/home");
+              navigate("/main");
             }
           });
         })
