@@ -13,7 +13,7 @@ const Main = () => {
       <header className="absolute flex items-center justify-between px-10 p-5 z-20">
         <h1 className="text-3xl font-bold text-white">Jammies</h1>
 
-        <div className="hidden md:block w-36">
+        <div className=" w-36">
           <button className="text-semibold border-2 rounded-full text-white w-full p-2 hover:bg-white hover:text-black cursor-pointer duration-300">
             Book Now
           </button>
