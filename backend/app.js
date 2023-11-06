@@ -20,11 +20,7 @@ mongoose.connection.once("open", () => {
 
 //Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://jammies-web.vercel.app/",
-  })
-);
+app.use(cors());
 
 //Routes
 app.use("/api", userRoute);

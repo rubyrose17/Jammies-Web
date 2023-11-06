@@ -40,7 +40,7 @@ const Forms = () => {
     e.preventDefault();
     if (isSignIn) {
       axios
-        .post("https://jammies-web-hkr5.vercel.app/api/signin", formData)
+        .post("http://localhost:3000/api/signin", formData)
         .then((response) => {
           setMessage("Sign-in successful");
 
@@ -66,7 +66,7 @@ const Forms = () => {
         });
     } else {
       axios
-        .post("https://jammies-web-hkr5.vercel.app/api/register", formData)
+        .post("http://localhost:3000/api/register", formData)
         .then((response) => {
           setMessage("Registration successful");
 
