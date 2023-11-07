@@ -69,7 +69,13 @@ const Forms = () => {
         .post("http://localhost:3000/api/register", formData)
         .then((response) => {
           setMessage("Registration successful");
-
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
           MySwal.fire({
             icon: "success",
             title: "Registration Successful",
